@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { landingPageDTO, pelicula } from "./peliculas/peliculas.model";
 import ListadoPeliculas from "./peliculas/ListadoPeliculas";
+import Button from "./utils/Button";
 
 function App() {
   const [peliculas, setPeliculas] = useState<landingPageDTO>({});
@@ -39,13 +40,17 @@ function App() {
 
   return (
     <>
-      <h3>En Cartelera</h3>
-      <ListadoPeliculas peliculas={peliculas.enCartelera}></ListadoPeliculas>
+      <div className="container">
 
-      <h3>Proximos Extrenos</h3>
-      <ListadoPeliculas
-        peliculas={peliculas.proximosEstrenos}
-      ></ListadoPeliculas>
+        <Button>Mi Componente Boton</Button>
+        <h3>En Cartelera</h3>
+        <ListadoPeliculas peliculas={peliculas.enCartelera}></ListadoPeliculas>
+
+        <h3>Proximos Extrenos</h3>
+        <ListadoPeliculas
+          peliculas={peliculas.proximosEstrenos}
+        ></ListadoPeliculas>
+      </div>
     </>
   );
 }
