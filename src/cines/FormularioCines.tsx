@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import FormGroupText from "../utils/FormGroupText";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
-import Mapa from "../utils/Mapa";
 import MapaFormulario from "../utils/MapaFormulario";
 import { coordenadasDTO } from "../utils/coordenadas.mode";
 

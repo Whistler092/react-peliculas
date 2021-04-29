@@ -17,9 +17,19 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export default function Mapa(props: mapaProps) {
   const [coordenadas, setCoordendas] = useState<coordenadasDTO[]>(props.coordenadas);
 
+  function transformarCoordenadas(): coordenadasDTO | undefined{
+    if(props.coordenadas && props.coordenadas.length > 0){
+      const respuesta: coordenadasDTO = {
+        lat: props.coordenadas[0].lat,
+        lng: props.coordenadas[0].lng
+      }
+      return respuesta
+    }
+    return undefined
+  }
   return (
     <MapContainer
-      center={[3.4571587, -76.5406555]}
+      center={transformarCoordenadas()}
       zoom={14}
       style={{ height: props.height }}
     >
