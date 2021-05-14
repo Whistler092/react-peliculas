@@ -14,6 +14,7 @@ export default function FormularioGeneros(props: formularioGenerosProps) {
       validationSchema={Yup.object({
         nombre: Yup.string()
           .required("Este campo es requerido")
+          .max(50, 'La longitud máxima es de 50 caracteres')
           .primeraLetraMayuscula(),
       })}
     >
@@ -22,7 +23,7 @@ export default function FormularioGeneros(props: formularioGenerosProps) {
           <FormGroupText
             campo="nombre"
             label="Nombre"
-            placeholder="placeholder"
+            placeholder="Nombre del Genero"
           ></FormGroupText>
           <Button disabled={formikProps.isSubmitting} type="submit">
             Salvar
