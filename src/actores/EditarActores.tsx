@@ -1,23 +1,36 @@
 import React from "react";
+import EditarEntidad from "../utils/EditarEntidad";
+import { urlActores } from "../utils/endpoints";
+import convertirActorAFormData from "../utils/formDataUtils";
+import { actorCreacionDTO, actorDTO } from "./actores.mode";
 import FormularioActores from "./FormularioActores";
 
 export default function EditarActores() {
+
+  const transformar = (actor: actorDTO) => {
+    return {
+      nombre: actor.nombre,
+      fotoURL : actor.foto,
+      biografia: actor.biografia,
+      fechaNacimiento: new Date(actor.fechaNacimiento)
+    }
+  }
   return (
     <>
-      <h3>Editar Actores</h3>
-      <FormularioActores
-        modelo={{
-          nombre: "Anthony Hopkins (I)",
-          fechaNacimiento: new Date("1937-12-31T00:00:00"),
-          fotoURL: 'https://m.media-amazon.com/images/M/MV5BMTg5ODk1NTc5Ml5BMl5BanBnXkFtZTYwMjAwOTI4._V1_UY317_CR6,0,214,317_AL_.jpg',
-          biografia: `
-          ## Anthony Hopkins (I)
-
-Anthony Hopkins was born on December 31, 1937, in **Margam, Wales**, 
-`
-        }}
-        onSubmit={(valores) => console.log(valores)}
-      ></FormularioActores>
+      <EditarEntidad<actorCreacionDTO, actorDTO>
+        url={urlActores}
+        urlIndice="/actores"
+        nombreEntidad="Actores"
+        transformar={transformar}
+        transformarFormData={convertirActorAFormData}
+      >
+        {(entidad, editar) => (
+          <FormularioActores
+            modelo={entidad}
+            onSubmit={async (valores) => await editar(valores)}
+          ></FormularioActores>
+        )}
+      </EditarEntidad>
     </>
   );
 }

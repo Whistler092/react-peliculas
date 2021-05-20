@@ -9,7 +9,7 @@ import Paginacion from "./Paginacion";
 export default function IndiceEntidad<T>(props: indiceEntidadProps<T>) {
   const [entidades, setEntidades] = useState<T[]>();
   const [totalDePaginas, setTotalDePaginas] = useState(0);
-  const [recordsPorPagina, setRecordsPorPagina] = useState(5);
+  const [recordsPorPagina, setRecordsPorPagina] = useState(10);
 
   const [pagina, setPagina] = useState(1);
 
