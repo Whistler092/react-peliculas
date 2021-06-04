@@ -1,10 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import Cargando from "../utils/Cargando";
 import EditarEntidad from "../utils/EditarEntidad";
 import { urlGeneros } from "../utils/endpoints";
-import MostrarErrores from "../utils/MostrarErrores";
 import FormularioGeneros from "./FormularioGeneros";
 import { generoCreacionDTO, generoDTO } from "./generos.model";
 

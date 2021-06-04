@@ -23,6 +23,8 @@ export default function Mapa(props: mapaProps) {
         lat: props.coordenadas[0].lat,
         lng: props.coordenadas[0].lng
       }
+      console.log('transformarCoordenadas', respuesta);
+      
       return respuesta
     }
     return undefined

@@ -1,18 +1,25 @@
 import React from "react";
+import EditarEntidad from "../utils/EditarEntidad";
+import { urlCines } from "../utils/endpoints";
+import { cineCreacionDTO, cineDTO } from "./cines.model";
 import FormularioCines from "./FormularioCines";
 
-export default function CrearCines() {
+export default function EditarCines() {
   return (
-    <>
-      <h3>Editar Cines</h3>
-      <FormularioCines
-        modelo={{
-          nombre: "Cinepolis",
-          latitud: 3.4144382019373305,
-          longitud: -76.548143690452,
-        }}
-        onSubmit={(valores) => console.log(valores)}
-      ></FormularioCines>
-    </>
+    <EditarEntidad<cineCreacionDTO, cineDTO>
+      url={urlCines}
+      urlIndice="/cines"
+      nombreEntidad="Cines"
+    >
+      {(entidad, editar) => (
+        <FormularioCines
+          modelo={entidad}
+          onSubmit={async (valores) => {
+            await editar(valores);
+            console.log(valores);
+          }}
+        />
+      )}
+    </EditarEntidad>
   );
 }
