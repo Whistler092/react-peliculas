@@ -29,11 +29,20 @@ export interface peliculaCreacionDTO {
 }
 
 export interface landingPageDTO {
-    enCartelera?: pelicula[];
+    enCines?: pelicula[];
     proximosEstrenos?: pelicula[];
 }
 
 export interface peliculasPostGetDTO{
     generos: generoDTO[];
     cines: cineDTO[];
+}
+
+export interface peliculasPutGetDTO{
+    pelicula: peliculaDTO;
+    generosSeleccionados: generoDTO[];
+    generosNoSeleccionados: generoDTO[];
+    cinesSeleccionados: cineDTO[];
+    cinesNoSeleccionados: cineDTO[];
+    actores: actorPeliculaDTO[];
 }
