@@ -5,7 +5,8 @@ import FormGroupText from "../utils/FormGroupText";
 import Button from "../utils/Button";
 import { Link } from "react-router-dom";
 import MapaFormulario from "../utils/MapaFormulario";
-import { coordenadasDTO } from "../utils/coordenadas.mode";
+import { coordenadasDTO } from "../utils/coordenadas.model";
+
 
 export default function FormularioCines(props: formularioCinesProps) {
 

@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Cargando from "../utils/Cargando";
-import { coordenadasDTO } from "../utils/coordenadas.mode";
+import { coordenadasDTO } from "../utils/coordenadas.model";
 import { urlPeliculas } from "../utils/endpoints";
 import Mapa from "../utils/Mapa";
 import { peliculaDTO } from "./peliculas.model";

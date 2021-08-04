@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import { coordenadasDTO } from "./coordenadas.mode";
+import { coordenadasDTO } from "./coordenadas.model";
 import Mapa from "./Mapa";
 
 export default function MapaFormulario(props: mapaFormularioProps){
