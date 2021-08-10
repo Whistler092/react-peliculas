@@ -16,6 +16,8 @@ import RedireccionarALanding from "./utils/RedireccionarALanding";
 import Registro from "./Auth/Registro";
 import Login from "./Auth/Login";
 
+import IndiceUsuarios  from "./Auth/IndiceUsuarios";
+
 const rutas = [
     { path: '/generos/crear', componente: CrearGenero, esAdmin: true },
     { path: '/generos/editar/:id(\\d+)', componente: EditarGenero, esAdmin: true },
@@ -36,6 +38,7 @@ const rutas = [
 
     { path: '/registro', componente: Registro },
     { path: '/login', componente: Login },
+    { path: '/usuarios', componente: IndiceUsuarios, esAdmin: true },
 
     { path: '/', componente: LandingPage, exact: true },
 

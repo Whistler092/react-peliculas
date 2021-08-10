@@ -8,8 +8,10 @@ import AutenticacionContext from "./Auth/AutenticacionContext";
 import { claim } from "./Auth/auth.model";
 import { useEffect, useState } from "react";
 import { obtenerClaims } from "./Auth/manejadorJWT";
+import { configurarInterceptor } from "./utils/Interceptores";
 
 configurarValidaciones();
+configurarInterceptor();
 
 function App() {
   const [claims, setClaims] = useState<claim[]>([]);

@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import Cargando from "../utils/Cargando";
 import { coordenadasDTO } from "../utils/coordenadas.model";
-import { urlPeliculas } from "../utils/endpoints";
+import { urlPeliculas, urlRatings } from "../utils/endpoints";
 import Mapa from "../utils/Mapa";
+import Rating from "../utils/Rating";
 import { peliculaDTO } from "./peliculas.model";
 
 export default function DetallePelicula() {
@@ -37,19 +39,27 @@ export default function DetallePelicula() {
     return `https://www.youtube.com/embed/${video_id}`;
   }
 
-  function transformarCoordenadas(): coordenadasDTO[]{
-    if(pelicula?.cines){
-        const coordenadas = pelicula.cines.map(cines => {
-            return {
-                lat: cines.latitud,
-                lng: cines.longitud,
-                nombre: cines.nombre
-            } as coordenadasDTO;
-        })
+  function transformarCoordenadas(): coordenadasDTO[] {
+    if (pelicula?.cines) {
+      const coordenadas = pelicula.cines.map((cines) => {
+        return {
+          lat: cines.latitud,
+          lng: cines.longitud,
+          nombre: cines.nombre,
+        } as coordenadasDTO;
+      });
 
-        return coordenadas;
+      return coordenadas;
     }
     return [];
+  }
+
+  async function onVote(voto: number) {
+    await axios.post(`${urlRatings}`, {
+      puntuacion: voto,
+      peliculaId: id,
+    });
+    Swal.fire({ icon: "success", title: "Voto registrado" });
   }
 
   return pelicula ? (
@@ -68,10 +78,18 @@ export default function DetallePelicula() {
             {genero.nombre}
           </Link>
         ))}{" "}
-        | {pelicula.fechaLanzamiento.toDateString()}
+        | {pelicula.fechaLanzamiento.toDateString()} {" "}| {" "}Voto Promedio:{" "}
+        {pelicula.promedioVoto}
+        | Tu Voto:
+        <Rating
+          maximoValor={5}
+          valorSeleccionado={pelicula.votoUsuario!}
+          onChange={onVote}
+        />
         <div style={{ display: "flex", marginTop: "1rem" }}>
           <span style={{ display: "inline-block", marginRight: "1rem" }}>
             <img
+              alt=""
               src={pelicula.poster}
               style={{ width: "225px", height: "315px" }}
             />
@@ -132,12 +150,15 @@ export default function DetallePelicula() {
             </div>
           </div>
         ) : null}
-        {pelicula.cines && pelicula.cines.length > 0 ?
-        <div>
+        {pelicula.cines && pelicula.cines.length > 0 ? (
+          <div>
             <h2>Mostrándose en los siguientes Cines</h2>
-            <Mapa coordenadas={transformarCoordenadas()} soloLectura={true} ></Mapa>
-        </div>
-        : null}
+            <Mapa
+              coordenadas={transformarCoordenadas()}
+              soloLectura={true}
+            ></Mapa>
+          </div>
+        ) : null}
       </div>
     </div>
   ) : (
