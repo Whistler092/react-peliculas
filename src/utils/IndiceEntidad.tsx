@@ -17,7 +17,7 @@ export default function IndiceEntidad<T>(props: indiceEntidadProps<T>) {
     cargarDatos();
   }, [pagina, recordsPorPagina]);
 
-  function cargarDatos() {
+  const cargarDatos = () => {
     axios
       .get(props.url, {
         params: { pagina, recordsPorPagina },
@@ -39,7 +39,7 @@ export default function IndiceEntidad<T>(props: indiceEntidadProps<T>) {
       await axios.delete(`${props.url}/${id}`);
       cargarDatos();
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   }
 

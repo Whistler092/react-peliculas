@@ -76,7 +76,7 @@ export default function FiltroPeliculas() {
       queryString.push(`titulo=${valores.titulo}`);
     }
 
-    if (valores.generoId != 0) {
+    if (valores.generoId !== 0) {
       queryString.push(`generoId=${valores.generoId}`);
     }
 
